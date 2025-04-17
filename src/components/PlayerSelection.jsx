@@ -27,13 +27,28 @@ const player = [
 
 const PlayerSelection = () => {
     const [selectedRoles, setSelectedRoles] = useState({});
-    const [team, setTeam] = useState([]);
 
     const handleChangeRole = (player, role) =>{
         setSelectedRoles((prev) => {
-            const updated = (...prev);
+            const updated = {...prev};
 
-            
+            if(role === 'C'){
+                for(let key in updated){
+                    if(updated[key] === 'C'){
+                        updated[key] = "Player";
+                    }
+                }
+            }
+            if(role === 'VC'){
+                for(let key in updated){
+                    if(updated[key] === 'C'){
+                        updated[key] = "Player";
+                    }
+                }
+            }
+
+
+
         })
     }
   return <div>PlayerSelection</div>;
