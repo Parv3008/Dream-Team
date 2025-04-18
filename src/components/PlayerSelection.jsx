@@ -37,32 +37,20 @@ const PlayerSelection = () => {
         <h2>Available Players</h2>
         {player.map((player, id) => (
           <div key={id} className="player-card">
-            <span>{player}</span>
-            <div className="buttons">
-              <button
-                onClick={() =>
-                  handleRoleChange(
-                    player,
-                    team.includes(player) ? "Remove" : "Player"
-                  )
-                }
-              >
-                {team.includes(player) ? "Remove" : "Add"}
-              </button>
-              <button
-                className="c"
-                onClick={() => handleRoleChange(player, "Captain")}
-              >
-                Captain
-              </button>
-              <button
-                className="c"
-                onClick={() => handleRoleChange(player, "Vice Captain")}
-              >
-                Vice Captain
-              </button>
-            </div>
-          </div>
+          <span>{player}</span>
+          <div className="buttons">
+            <button
+              className={team.includes(player) ? "remove-button" : "add-button"}
+              onClick={() =>
+                handleRoleChange(player, team.includes(player) ? "Remove" : "Player")
+              }
+            >
+              {team.includes(player) ? "Remove" : "Add"}
+            </button>
+            <button className="c" onClick={() => handleRoleChange(player, "Captain")}>Captain</button>
+            <button className="c" onClick={() => handleRoleChange(player, "Vice-Captain")}>Vice Captain</button>
+          </div>    
+        </div>        
         ))}
       </div>
 

@@ -27,15 +27,15 @@ export default function useTeamSelection() {
     setSelectedRoles((prev) => {
       const updated = { ...prev };
 
-      if (role === "C") {
+      if (role === "Captain") {
         for (let key in updated) {
-          if (updated[key] === "C") updated[key] = "Player";
+          if (updated[key] === "Captain") updated[key] = "Player";
         }
       }
 
-      if (role === "VC") {
+      if (role === "Vice-Captain") {
         for (let key in updated) {
-          if (updated[key] === "VC") updated[key] = "Player";
+          if (updated[key] === "Vice-Captain") updated[key] = "Player";
         }
       }
 
