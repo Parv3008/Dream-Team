@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import "../styles/PlayerSelection.scss";
+import useTeamSelection from "./useTeamSelection";
 
 const player = [
   "Rohit Sharma",
@@ -26,32 +28,54 @@ const player = [
 ];
 
 const PlayerSelection = () => {
-    const [selectedRoles, setSelectedRoles] = useState({});
+  const { team, selectedRoles, handleRoleChange, getSelectedTeam } =
+    useTeamSelection();
 
-    const handleChangeRole = (player, role) =>{
-        setSelectedRoles((prev) => {
-            const updated = {...prev};
-
-            if(role === 'C'){
-                for(let key in updated){
-                    if(updated[key] === 'C'){
-                        updated[key] = "Player";
-                    }
+  return (
+    <div className="container">
+      <div className="player-list">
+        <h2>Available Players</h2>
+        {player.map((player, id) => (
+          <div key={id} className="player-card">
+            <span>{player}</span>
+            <div className="buttons">
+              <button
+                onClick={() =>
+                  handleRoleChange(
+                    player,
+                    team.includes(player) ? "Remove" : "Player"
+                  )
                 }
-            }
-            if(role === 'VC'){
-                for(let key in updated){
-                    if(updated[key] === 'C'){
-                        updated[key] = "Player";
-                    }
-                }
-            }
+              >
+                {team.includes(player) ? "Remove" : "Add"}
+              </button>
+              <button
+                className="c"
+                onClick={() => handleRoleChange(player, "Captain")}
+              >
+                Captain
+              </button>
+              <button
+                className="c"
+                onClick={() => handleRoleChange(player, "Vice Captain")}
+              >
+                Vice Captain
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
 
-
-
-        })
-    }
-  return <div>PlayerSelection</div>;
+      <div className="preview">
+        <h2>Selected Team ({team.length}/11)</h2>
+        {getSelectedTeam().map((p, i) => (
+          <div key={i} className="selected-player">
+            {p.name} - {p.role}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default PlayerSelection;
